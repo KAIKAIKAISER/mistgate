@@ -9,6 +9,7 @@ import (
 	"math"
 	"net/http"
 	"net/url"
+	"os"
 	"regexp"
 	"strings"
 	"sync"
@@ -39,6 +40,9 @@ type RepoStars struct {
 
 // NewRepoStars returns nil unless sourceURL is exactly a GitHub repository page.
 func NewRepoStars(sourceURL string, log *slog.Logger) *RepoStars {
+	if os.Getenv("MISTGATE_DISABLE_STARS") != "" || os.Getenv("MISTGATE_DISABLE_TELEMETRY") != "" {
+		return nil
+	}
 	u, err := url.Parse(sourceURL)
 	if err != nil || !strings.EqualFold(u.Scheme, "https") || !strings.EqualFold(u.Host, "github.com") || u.User != nil ||
 		u.Opaque != "" || strings.ContainsAny(sourceURL, "?#") {

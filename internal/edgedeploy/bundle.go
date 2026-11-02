@@ -18,7 +18,14 @@ import (
 	"github.com/mistgate/mistgate/internal/release"
 )
 
-const githubDownloadBase = "https://github.com/Mistgate/mistgate/releases/download"
+var githubDownloadBase = initGithubDownloadBase()
+
+func initGithubDownloadBase() string {
+	if r := os.Getenv("MISTGATE_REPO"); r != "" {
+		return "https://github.com/" + strings.Trim(r, "/") + "/releases/download"
+	}
+	return "https://github.com/KAIKAIKAISER/mistgate/releases/download"
+}
 
 type bundle struct {
 	manifest *release.EdgeManifest

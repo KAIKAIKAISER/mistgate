@@ -17,7 +17,7 @@ import (
 
 const (
 	DefaultBaseURL = "https://bsbord.com"
-	userAgent      = "mistgate-panel (+https://github.com/mistgate/mistgate)"
+	userAgent      = "mistgate-panel (+https://github.com/KAIKAIKAISER/mistgate)"
 	maxBody        = 2 << 20
 )
 

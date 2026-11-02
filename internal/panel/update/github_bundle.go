@@ -267,7 +267,7 @@ func validateGitHubBundleAsset(asset githubAsset, tag string, maxSize int64) err
 	if err != nil || u.Scheme != "https" || u.Host != "github.com" || u.User != nil || u.RawQuery != "" || u.Fragment != "" {
 		return fmt.Errorf("GitHub asset %q URL is not official", asset.Name)
 	}
-	expected := "/Mistgate/mistgate/releases/download/" + url.PathEscape(tag) + "/" + url.PathEscape(asset.Name)
+	expected := "/" + defaultGitHubRepo + "/releases/download/" + url.PathEscape(tag) + "/" + url.PathEscape(asset.Name)
 	if u.EscapedPath() != expected {
 		return fmt.Errorf("GitHub asset %q URL does not match release %q", asset.Name, tag)
 	}

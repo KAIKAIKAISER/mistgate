@@ -165,7 +165,7 @@ func parseInitOptions(value js.Value) (initOptions, error) {
 			return out, err
 		}
 	} else {
-		out.sourceURL = "https://github.com/Mistgate/mistgate"
+		out.sourceURL = "https://github.com/KAIKAIKAISER/mistgate"
 	}
 	return out, nil
 }

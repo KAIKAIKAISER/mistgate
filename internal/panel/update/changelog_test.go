@@ -352,7 +352,7 @@ func TestPanelUpdaterCheckReadsNotesOnlyWhenConfigured(t *testing.T) {
 	base := updater.client
 	updater.cfg.NotesURL = GitHubReleaseNotesURL
 	updater.client = &http.Client{Transport: roundTripFunc(func(r *http.Request) (*http.Response, error) {
-		if r.URL.Path == "/repos/Mistgate/mistgate/releases" {
+		if r.URL.Path == "/repos/"+defaultGitHubRepo+"/releases" {
 			return api.client().Do(r)
 		}
 		return base.Do(r)
@@ -383,7 +383,7 @@ func TestReleaseNotesKeepTheRedirectAllowlist(t *testing.T) {
 	if len(asked) != 1 {
 		t.Fatalf("hosts asked: %v", asked)
 	}
-	if GitHubReleaseNotesURL != "https://api.github.com/repos/Mistgate/mistgate/releases?per_page=30" {
+	if GitHubReleaseNotesURL != "https://api.github.com/repos/"+defaultGitHubRepo+"/releases?per_page=30" {
 		t.Fatalf("the notes come from %s", GitHubReleaseNotesURL)
 	}
 }

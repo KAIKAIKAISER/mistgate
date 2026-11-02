@@ -26,10 +26,21 @@ import (
 	"github.com/mistgate/mistgate/internal/release"
 )
 
+var (
+	defaultGitHubRepo          = initDefaultGitHubRepo()
+	githubLatestReleaseURL     = "https://api.github.com/repos/" + defaultGitHubRepo + "/releases/latest"
+	githubReleasePageBase      = "https://github.com/" + defaultGitHubRepo + "/releases/tag/"
+	panelReleasePrefix         = "https://github.com/" + defaultGitHubRepo + "/releases/download/"
+)
+
+func initDefaultGitHubRepo() string {
+	if r := os.Getenv("MISTGATE_REPO"); r != "" {
+		return strings.Trim(r, "/")
+	}
+	return "KAIKAIKAISER/mistgate"
+}
+
 const (
-	githubLatestReleaseURL     = "https://api.github.com/repos/Mistgate/mistgate/releases/latest"
-	githubReleasePageBase      = "https://github.com/Mistgate/mistgate/releases/tag/"
-	panelReleasePrefix         = "https://github.com/Mistgate/mistgate/releases/download/"
 	panelUpdateInterval        = 10 * time.Minute // as often as the node bundle: 12 anonymous GitHub calls an hour together, the limit is 60
 	panelUpdateCheckTimeout    = 10 * time.Second
 	panelUpdateCheckCache      = 3 * time.Minute // CheckPanelUpdate answers from the last lookup this long

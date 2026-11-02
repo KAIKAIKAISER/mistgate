@@ -9,3 +9,5 @@ web/dist/*
 *.db-shm
 .env
 /mistgate-edge
+*.key
+release.key

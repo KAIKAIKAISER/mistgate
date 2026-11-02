@@ -17,9 +17,13 @@ import (
 	"golang.org/x/mod/semver"
 )
 
-// GitHubReleaseNotesURL lists the official repository's releases, newest first. The panel reads it on the schedule of the
+// GitHubReleaseNotesURL lists the release repository's releases, newest first. The panel reads it on the schedule of the
 // release check, with a conditional request, to show "What's new" on the Updates page.
-const GitHubReleaseNotesURL = "https://api.github.com/repos/Mistgate/mistgate/releases?per_page=30"
+var GitHubReleaseNotesURL = initGitHubReleaseNotesURL()
+
+func initGitHubReleaseNotesURL() string {
+	return "https://api.github.com/repos/" + defaultGitHubRepo + "/releases?per_page=30"
+}
 
 const (
 	notesMaxReleases = 30       // the page size above; also what is kept

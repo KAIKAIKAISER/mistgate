@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-readonly RELEASES_URL="https://github.com/Mistgate/mistgate"
-readonly RELEASE_PUBLIC_KEY_BASE64="6ylEpIbbde2c7e7FcaC/Wc5DAmHfOHsPsOqiB8HaU3c="
-readonly RELEASE_PUBLIC_KEY_SSH_BASE64="AAAAC3NzaC1lZDI1NTE5AAAAIOspRKSG23XtnO3uxXGgv1nOQwJh3zh7D7DqogfB2lN3"
+readonly RELEASES_URL="https://github.com/KAIKAIKAISER/mistgate"
+readonly RELEASE_PUBLIC_KEY_BASE64="sdgttweGxbjmPGiSbb+2MwhSZORyir0/3VwlM6gJwbA="
+readonly RELEASE_PUBLIC_KEY_SSH_BASE64="AAAAC3NzaC1lZDI1NTE5AAAAILHYLbcHhsW45jxokm2/tjMIUmTkcoq9P91cJTOoCcGw"
 readonly PANEL_SIGNATURE_CONTEXT="mistgate panel manifest v1"
 readonly PANEL_SSHSIG_NAMESPACE="mistgate-panel-manifest-v1"
 readonly DEFAULT_DATA_DIR="/var/lib/mistgate"

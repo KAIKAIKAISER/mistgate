@@ -331,6 +331,9 @@ func (r rpc) RescanBundle(ctx context.Context, _ *connect.Request[adminv1.Rescan
 	if r.s.cfg.Edge {
 		b = r.s.refreshReleaseBundle(ctx)
 	} else {
+		if r.s.cfg.NodeBundleSource != nil {
+			r.s.syncNodeBundle(ctx)
+		}
 		b = r.s.rescan()
 	}
 	r.s.audit(ctx, "update_rescan", map[string]string{"status": b.view.Status.String()})

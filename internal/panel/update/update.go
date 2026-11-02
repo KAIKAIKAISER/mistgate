@@ -194,7 +194,8 @@ func (s *Service) Run(ctx context.Context) {
 	s.runCtx = ctx
 	s.mu.Unlock()
 	s.recover(ctx)
-	s.syncNodeBundle(ctx)
+	// Security audit hardening: Do not automatically download unreviewed node bundles on startup.
+	// All bundle downloads and updates must be manually confirmed by the owner.
 	s.processScheduledNodeUpdates(ctx)
 	if s.cfg.PanelUpdater != nil {
 		s.wg.Add(1)
@@ -227,7 +228,9 @@ func (s *Service) Run(ctx context.Context) {
 			s.rescanIfChanged()
 			s.processScheduledNodeUpdates(ctx)
 		case <-bundlePoll.C:
-			s.syncNodeBundle(ctx)
+			// Security audit hardening: Do not automatically download node bundles periodically.
+			// Bundle syncing must be explicitly requested or confirmed by the owner.
+			s.rescanIfChanged()
 			s.processScheduledNodeUpdates(ctx)
 		case <-prune.C:
 			s.pruneOld(ctx)

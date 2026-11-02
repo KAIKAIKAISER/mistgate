@@ -88,7 +88,7 @@ func envOr(key, def string) string {
 }
 
 // defaultSourceURL is where the panel's source code is published. The admin links to it next to the version.
-const defaultSourceURL = "https://github.com/Mistgate/mistgate"
+const defaultSourceURL = "https://github.com/KAIKAIKAISER/mistgate"
 
 // sourceURLDefault is the default of serve --source-url: MISTGATE_SOURCE_URL when it is set, even to "" (no link),
 // else defaultSourceURL.

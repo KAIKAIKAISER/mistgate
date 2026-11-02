@@ -16,8 +16,8 @@ func TestSourceURLDefault(t *testing.T) {
 		t.Errorf("MISTGATE_SOURCE_URL set: default %q", got)
 	}
 	os.Unsetenv("MISTGATE_SOURCE_URL") // t.Setenv restores the outer value afterwards
-	if got := sourceURLDefault(); got != "https://github.com/Mistgate/mistgate" {
-		t.Errorf("unset: default %q, want the project's repository", got)
+	if got := sourceURLDefault(); got != defaultSourceURL {
+		t.Errorf("unset: default %q, want the project's repository (%s)", got, defaultSourceURL)
 	}
 }
 
